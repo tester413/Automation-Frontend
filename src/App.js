@@ -1,9 +1,12 @@
 import React from "react";
+import Profile from "./UserFrontend/Profile";
+// import News from "./UserFrontend/News";
+// import Search from "./UserFrontend/Search";
 
 function App() {
   return (
-    <div style={{ padding: "40px" }}>
-      <h1>Frontend is working ✅</h1>
+    <div>
+      <Profile />
     </div>
   );
 }
