@@ -148,15 +148,15 @@ function Profile() {
           <h3>Submitted Data</h3>
 
           <p>
-            <strong>Name:</strong> {result.testData.name}
+            <strong>Name:</strong> {result.name}
           </p>
 
           <p>
-            <strong>Phone:</strong> {result.testData.phone}
+            <strong>Phone:</strong> {result.phone}
           </p>
 
           <p>
-            <strong>DOB:</strong> {result.testData.dob}
+            <strong>DOB:</strong> {result.dob}
           </p>
 
           <hr />
