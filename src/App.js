@@ -7,8 +7,9 @@ function App() {
   return (
     <div>
       <Profile />
-      <Search/>
       <News/>
+      <Search/>
+      
     </div>
   );
 }
