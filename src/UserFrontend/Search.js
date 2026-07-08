@@ -12,7 +12,8 @@ function Search() {
       setError("");
       setResult(null);
 
-      const response = await fetch("http://localhost:5000/api/search/run", {
+      // Updated URL to point to your deployed Render API
+      const response = await fetch("https://automation-backend-r22h.onrender.com/api/search/run", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -117,27 +118,27 @@ function Search() {
           <hr />
 
           <h3>Execution Details</h3>
-          <p><strong>Test Name:</strong> {result.result.testName}</p>
+          <p><strong>Test Name:</strong> {result.result?.testName}</p>
           <p>
             <strong>Status:</strong>{" "}
             <span
               style={{
-                color: result.result.status === "PASSED" ? "green" : "red",
+                color: result.result?.status === "PASSED" ? "green" : "red",
                 fontWeight: "bold",
               }}
             >
-              {result.result.status}
+              {result.result?.status}
             </span>
           </p>
           <p><strong>Execution Time:</strong> {result.executionTime} sec</p>
           <p>
             <strong>Executed At:</strong>{" "}
-            {new Date(result.result.executedAt).toLocaleString()}
+            {result.result?.executedAt ? new Date(result.result.executedAt).toLocaleString() : "N/A"}
           </p>
           <hr />
 
           <h2>Test Report Summary</h2>
-          {result.result.report && (
+          {result.result?.report && (
             <table
               style={{
                 width: "100%",
@@ -148,28 +149,28 @@ function Search() {
               <tbody>
                 <tr>
                   <td style={td}><strong>Total Tests</strong></td>
-                  <td style={td}>{result.result.report.summary.total}</td>
+                  <td style={td}>{result.result.report.summary?.total}</td>
                 </tr>
                 <tr>
                   <td style={td}><strong>Passed</strong></td>
                   <td style={{ ...td, color: "green" }}>
-                    {result.result.report.summary.passed}
+                    {result.result.report.summary?.passed}
                   </td>
                 </tr>
                 <tr>
                   <td style={td}><strong>Failed</strong></td>
                   <td style={{ ...td, color: "red" }}>
-                    {result.result.report.summary.failed}
+                    {result.result.report.summary?.failed}
                   </td>
                 </tr>
                 <tr>
                   <td style={td}><strong>Skipped</strong></td>
-                  <td style={td}>{result.result.report.summary.skipped}</td>
+                  <td style={td}>{result.result.report.summary?.skipped}</td>
                 </tr>
                 <tr>
                   <td style={td}><strong>Total Duration</strong></td>
                   <td style={td}>
-                    {result.result.report.summary.totalDuration} ms
+                    {result.result.report.summary?.totalDuration} ms
                   </td>
                 </tr>
               </tbody>
@@ -178,7 +179,7 @@ function Search() {
           <hr />
 
           <h2>Test Cases</h2>
-          {result.result.report?.tests?.length > 0 ? (
+          {result.result?.report?.tests?.length > 0 ? (
             <div style={{ overflowX: "auto" }}>
               <table
                 style={{
@@ -213,7 +214,7 @@ function Search() {
                           fontWeight: "bold",
                         }}
                       >
-                        {test.status.toUpperCase()}
+                        {test.status?.toUpperCase()}
                       </td>
                       <td style={td}>{test.expectedResult}</td>
                       <td style={td}>{test.actualResult}</td>
@@ -248,7 +249,7 @@ function Search() {
           <hr />
 
           <h2>Screenshots</h2>
-          {result.result.screenshots && result.result.screenshots.length > 0 ? (
+          {result.result?.screenshots && result.result.screenshots.length > 0 ? (
             <div
               style={{
                 display: "grid",
@@ -283,7 +284,7 @@ function Search() {
         </div>
       )}
     </div>
-  ); // <-- Added closing parenthesis and semicolon for return statement
-} // <-- Added closing brace for Search function
+  );
+}
 
 export default Search;
